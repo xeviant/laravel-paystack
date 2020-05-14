@@ -64,6 +64,12 @@ class WebHookRequest extends FormRequest
 
     protected function signatureMatches(): bool
     {
-        return $this->header('X-Paystack-Signature') === hash_hmac('sha512', app('paystack')->getConnectionConfig()['secretKey'], '');
+        return $this->server->get('HTTP_X_PAYSTACK_SIGNATURE')
+                ===
+                hash_hmac(
+                    'sha512',
+                    json_encode($this->all()),
+                    app('xeviant.paystack')->getConnectionConfig()['secretKey']
+                );
     }
 }

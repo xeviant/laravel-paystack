@@ -60,7 +60,7 @@ class WebHookTest extends AbstractTestCase
         $event =  PaystackEventType::CHARGE_SUCCESS;
         Event::fake();
 
-        config(['paystack.secretKey' => 'secretKey', 'app.debug' => true]);
+        config(['paystack.secretKey' => 'secretKey']);
 
         $requestData = [
             'data' => [

@@ -16,7 +16,8 @@
     "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
     "graham-campbell/cache-plugin": "^1.1",
     "graham-campbell/manager": "^4.2",
-    "xeviant/paystack": "^1.0.0"
+    "xeviant/paystack": "^1.0.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "mockery/mockery": "^1.2",

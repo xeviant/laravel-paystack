@@ -19,8 +19,8 @@ declare(strict_types=1);
 
 namespace Xeviant\LaravelPaystack\Http;
 
-use GrahamCampbell\CachePlugin\CachePlugin;
 use Http\Client\Common\Plugin\Cache\Generator\CacheKeyGenerator;
+use Http\Client\Common\Plugin\CachePlugin;
 use Psr\Cache\CacheItemPoolInterface;
 use Xeviant\Paystack\HttpClient\Builder;
 
@@ -54,7 +54,9 @@ class ClientBuilder extends Builder
     {
         $stream = $this->getPropertyValue('streamFactory');
 
-        $this->setPropertyValue('cachePlugin', new CachePlugin($cacheItemPool, $stream, $generator, $lifetime));
+        $options = ['cache_lifetime' => $lifetime, 'cache_key_generator' => $generator];
+
+        $this->setPropertyValue('cachePlugin', CachePlugin::clientCache($cacheItemPool, $stream, $options));
     }
 
     /**
